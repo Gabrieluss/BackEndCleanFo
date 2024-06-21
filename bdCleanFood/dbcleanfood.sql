@@ -45,6 +45,14 @@ primary key(codReceita),
 foreign key(codCliente)references tbclientes(codCliente)
 );
 select codReceita from tbreceitas where codReceita = 1;
+
+create table tbsalvos(
+codSalvo int not null auto_increment,
+nomeReceita varchar(50) not null,
+codReceita int not null,
+primary key(codSalvo),
+foreign key(codReceita)references tbreceitas(codReceita)        
+);
 create table tbavaliacoes(
 codAvaliacao int not null auto_increment,
 comentario varchar(100) not null,
@@ -84,8 +92,8 @@ create table tbpassos(
 codPasso int not null auto_increment,
 mododePreparo varchar(100) not null,
 tempodePreparo varchar(50) not null,
-codReceita int not null,
 descricao varchar(100) not null,
+codReceita int not null,
 primary key (codPasso),
 foreign key (codReceita)references tbreceitas(codReceita)
 );
@@ -97,6 +105,7 @@ show tables;
 desc tbusuarios;
 desc tbclientes;
 desc tbreceitas;
+desc tbsalvos;
 desc tbavaliacoes;
 desc tbingredientes;
 desc tbmedidas;
@@ -153,6 +162,18 @@ values(6,"Pão sem glúten com farinha de arroz",4);
 
 insert into tbreceitas(rendePorcoes,nomeReceita,codCliente)
 values(9,"Chips de abobrinha no forno",5);
+
+--Inserindo dados na tbsalvos
+insert into tbsalvos(nomeReceita,codReceita)
+values("Brigadeiro sem lactose",1);
+insert into tbsalvos(nomeReceita,codReceita)
+values("Filé a paramegiana de beringela",2);
+insert into tbsalvos(nomeReceita,codReceita)
+values("Bolo sem leite",3);
+insert into tbsalvos(nomeReceita,codReceita)
+values("Torta sem lactose",4);
+insert into tbsalvos(nomeReceita,codReceita)
+values("Bolo vegano",5);
 
 
 -- Insirindo dados na tbavaliacoes
@@ -262,6 +283,10 @@ UPDATE tbclientes SET nome = "Rute", sobrenome = "Freita", senha = "1234", datan
 update tbreceitas set rendePorcoes = 25 where codReceita = 1;
 update tbreceitas set nomeReceita = "Pizza de pepino atualizado" where codReceita = 2;
 
+-- Atualizando dados na tbsalvos
+update tbsalvos set nomeReceita = "Pizza atualizada" where codSalvo = 1;
+update tbsalvos set nomeReceita = "Bolo atualizado" where codSalvo = 2;
+
 
 -- Atualizando dados na tbavaliacoes
 update tbavaliacoes set comentario = "Isso está maravilhoso atualizado" where codAvaliacao = 1;
@@ -297,6 +322,7 @@ delete from tbquantidades where codMedida = 5;
 delete from tbmedidas where codMedida = 5;
 delete from tbingredientes where codIngrediente = 5;
 delete from tbavaliacoes where codAvaliacao = 5;
+delete from tbsalvos where codReceita = 5;
 delete from tbreceitas where codReceita = 5;
 delete from tbclientes where codCliente = 5;
 delete from tbusuarios where codUsuario = 5;
@@ -306,6 +332,7 @@ delete from tbusuarios where codUsuario = 5;
 select * from tbusuarios;
 select * from tbclientes;
 select * from tbreceitas;
+select * from tbsalvos;
 select * from tbavaliacoes;
 select * from tbingredientes;
 select * from tbmedidas;

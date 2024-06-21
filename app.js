@@ -18,6 +18,7 @@ app.use(cors());
 const usuariosRouters = require('./routers/usuariosRouters')
 const clientesRouters = require('./routers/clientesRouters')
 const receitasRouters = require('./routers/receitasRouters')
+const salvosRouters = require('./routers/salvosRouters')
 const avaliacoesRouters = require('./routers/avaliacoesRouters')
 const ingredientesRouters = require('./routers/ingredientesRouters')
 const medidasRouters = require('./routers/medidasRouters')
@@ -29,6 +30,7 @@ app.use(express.json());
 app.use('/usuarios', usuariosRouters);
 app.use('/clientes', clientesRouters);
 app.use('/receitas', receitasRouters);
+app.use('/salvos', salvosRouters);
 app.use('/avaliacoes', avaliacoesRouters);
 app.use('/ingredientes', ingredientesRouters);
 app.use('/medidas', medidasRouters);
