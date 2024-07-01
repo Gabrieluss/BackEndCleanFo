@@ -50,8 +50,10 @@ create table tbsalvos(
 codSalvo int not null auto_increment,
 nomeReceita varchar(50) not null,
 codReceita int not null,
+codCliente int not null,
 primary key(codSalvo),
-foreign key(codReceita)references tbreceitas(codReceita)        
+foreign key(codReceita)references tbreceitas(codReceita),
+foreign key(codCliente)references tbclientes(codCliente)       
 );
 create table tbavaliacoes(
 codAvaliacao int not null auto_increment,
@@ -164,16 +166,16 @@ insert into tbreceitas(rendePorcoes,nomeReceita,codCliente)
 values(9,"Chips de abobrinha no forno",5);
 
 --Inserindo dados na tbsalvos
-insert into tbsalvos(nomeReceita,codReceita)
-values("Brigadeiro sem lactose",1);
-insert into tbsalvos(nomeReceita,codReceita)
-values("Filé a paramegiana de beringela",2);
-insert into tbsalvos(nomeReceita,codReceita)
-values("Bolo sem leite",3);
-insert into tbsalvos(nomeReceita,codReceita)
-values("Torta sem lactose",4);
-insert into tbsalvos(nomeReceita,codReceita)
-values("Bolo vegano",5);
+insert into tbsalvos(nomeReceita,codReceita,codCliente)
+values("Brigadeiro sem lactose",1,1);
+insert into tbsalvos(nomeReceita,codReceita,codCliente)
+values("Filé a paramegiana de beringela",2,2);
+insert into tbsalvos(nomeReceita,codReceita,codCliente)
+values("Bolo sem leite",3,3);
+insert into tbsalvos(nomeReceita,codReceita,codCliente)
+values("Torta sem lactose",4,4);
+insert into tbsalvos(nomeReceita,codReceita,codCliente)
+values("Bolo vegano",5,5);
 
 
 -- Insirindo dados na tbavaliacoes
@@ -316,7 +318,7 @@ UPDATE tbpassos SET mododePreparo = "NomeAtualizado", tempodePreparo = "TempoAtu
 UPDATE tbpassos SET  mododePreparo = "test", tempodePreparo= "test", descricao = "test" where codPasso = 2;
 
 
--- apagando os dados da tabela 
+-- Apagando os dados da tabela 
 delete from tbpassos where codReceita = 5; 
 delete from tbquantidades where codMedida = 5;
 delete from tbmedidas where codMedida = 5;

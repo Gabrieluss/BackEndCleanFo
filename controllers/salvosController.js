@@ -24,12 +24,12 @@ router.get('/:codSalvo', (req,res) => {
 //post
 router.post('/', (req,res) => {
     const {nomeReceita,codReceita} = req.body;
-    const query = 'INSERT INTO tbsalvos(nomeReceita,codReceita) VALUES (?,?) ';
+    const query = 'INSERT INTO tbsalvos(nomeReceita,codReceita,codCliente) VALUES (?,?,?)';
 
-    dbConnection.query(query, [nomeReceita,codReceita], (err,result) => {
+    dbConnection.query(query, [nomeReceita,codReceita,codCliente], (err,result) => {
         if(err){
             res.status(500).json({
-                mensagem: 'Erro ao adicionar salvo'
+                mensagem: 'Erro ao adicionar receita salva'
             })
         }else{
             res.status(201).json({
@@ -49,7 +49,7 @@ router.delete('/:codSalvo', (req,res) => {
     dbConnection.query(query, {codSalvo}, (err,result) => {
         if(err){
             res.status(500).json({
-                mensagem: 'Erro ao deletar salvo'
+                mensagem: 'Erro ao deletar receita salva'
             })
         }else{
             res.status(201).json({
